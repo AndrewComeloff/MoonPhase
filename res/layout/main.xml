@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="106dp"
+        android:background="#303030"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="104dp"
+            android:background="#33b5e5" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iMoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="120dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/etDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:clickable="true"
+                android:ems="6"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:onClick="clickDate" />
+
+            <EditText
+                android:id="@+id/etTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:ems="4"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:onClick="clickTime" />
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickRes"
+                android:text="@string/button"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.viewpagerindicator.TitlePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/indicator"
+            android:layout_weight="1"
+            android:background="#55000000"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</RelativeLayout>

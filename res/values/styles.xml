@@ -1,0 +1,8 @@
+<resources>
+        
+    <style name="Moon">
+                <item name="android:windowNoTitle">true</item>
+                <item name="android:textColor">#FFFFFF</item>
+    </style>
+    
+</resources>
