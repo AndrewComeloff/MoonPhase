@@ -12,9 +12,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -58,6 +61,7 @@ TimePickerDialogFragment.NoticeDialogListener{
 	public static ImageView iMoon;
 	
 	AnimationDrawable anim;
+	Animation animScale; 
 	
 	List<View> views;
 
@@ -129,7 +133,10 @@ TimePickerDialogFragment.NoticeDialogListener{
 //		date = sdf.format(d);
 //		s = Integer.parseInt(date);
 //		Log.d(LOG_TAG, "Second = " + s);  
-		
+				
+		animScale = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
+		iMoon.startAnimation(animScale);
+				
 	}
 
 	@Override
@@ -215,8 +222,10 @@ TimePickerDialogFragment.NoticeDialogListener{
 		tvEasterOrthodoxRes.setText(Easter.easterOrthodox(year));
 		tvEasterCatholicRes.setText(Easter.easterCatholic(year));
 		
-//		anim.stop();
-//		iMoon.setBackgroundResource(R.drawable.moon01);
+		LinearLayout llbg =(LinearLayout) findViewById(R.id.llupBG);
+		llbg.setVisibility(1);
+		anim.stop();
+		iMoon.setBackgroundResource(R.drawable.moon01);
 		Anim.anim(calc.getAgeJul());
 	}
 

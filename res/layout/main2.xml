@@ -2,15 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg" >
+    android:background="#000" >
 
     <LinearLayout
-        android:id="@+id/llupBG"
         android:layout_width="fill_parent"
         android:layout_height="106dp"
-        android:background="#55999999"
-        android:visibility="gone"
+        android:background="#303030"
         android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="104dp"
+            android:background="#33b5e5" />
 
     </LinearLayout>
 
