@@ -18,7 +18,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/moon_phase"
+                        android:text="@string/phase_moon"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 

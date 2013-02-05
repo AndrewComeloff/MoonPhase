@@ -2,32 +2,40 @@
 <resources>
 
     <string name="app_name">MoonPhase</string>    
-    <string name="menu_settings">Settings: </string>
-    <string name="julian_date">Юлианская дата: </string>
-    <string name="phase_moon">Фаза луны: </string>
-    <string name="age">Возраст: </string>
-    <string name="new_moon">Новолуние: </string>
-    <string name="first_quarter">1 четверть: </string>
-    <string name="full_moon">Полнолуние: </string>
-    <string name="third_quarter">3 четверть: </string>
-    <string name="new_moon2">Новолуние: </string>
-    <string name="button">Выполнить</string>
-    <string name="easter_orthodox">Православная Пасха:</string>
-    <string name="easter_сatholic">Католическая Пасха:</string>
+    <string name="julian_date">Julian date: </string>
+    <string name="phase_moon">Moon phases: </string>
+    <string name="age">Age: </string>
+    <string name="new_moon">New moon: </string>
+    <string name="first_quarter">1 quarter: </string>
+    <string name="full_moon">Full moon: </string>
+    <string name="third_quarter">3 quarter: </string>
+    <string name="new_moon2">New moon: </string>
+    <string name="button">ok</string>
+    <string name="easter_orthodox">Easter orthodox:</string>
+    <string name="easter_сatholic">Easter сatholic":</string>
     
-    <string name="spring">Весеннее \nравноденствие:</string>
-    <string name="summer">Летнее \nсолнцестояние:</string>
-    <string name="autumn">Осеннее \nравноденствие:</string>
-    <string name="winter">Зимнее \nсолнцестояние:</string>
+    <string name="spring">Vernal \nequinox:</string>
+    <string name="summer">Summer \nsolstice:</string>
+    <string name="autumn">Autumnal \nequinox:</string>
+    <string name="winter">Winter \nsolstice:</string>
     
-    <string name="moon_phase">Фазы луны:</string>
-    <string name="equinox">Равноденствие:</string>
-    <string name="easter">Пасха:</string>
+    <string name="equinox">Equinox:</string>
+    <string name="easter">Easter:</string>
+    
+    <string name="AboutTitle">About</string>
+    <string name="About">MoonPhase        
+        \nVersion: 1.0
+        \nAuthor: Andrew Comeloff
+        \n
+        \nThank you for using my program.
+		If you have questions or comments, write to me.
+		\n
+		\nContact: comeloff@gmail.com</string>
     
     <string-array name="strArrayTabs">
         <item >Фазы</item>
-        <item >Равноденствие</item>
-        <item >Пасха</item>
+        <item >Equinox</item>
+        <item >Easter</item>
     </string-array>
 
 </resources>

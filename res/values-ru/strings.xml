@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MoonPhase</string>
+    <string name="julian_date">Юлианская дата: </string>
+    <string name="phase_moon">Фаза луны: </string>
+    <string name="age">Возраст: </string>
+    <string name="new_moon">Новолуние: </string>
+    <string name="first_quarter">1 четверть: </string>
+    <string name="full_moon">Полнолуние: </string>
+    <string name="third_quarter">3 четверть: </string>
+    <string name="new_moon2">Новолуние: </string>
+    <string name="button">Выполнить</string>
+    <string name="easter_orthodox">Православная Пасха:</string>
+    <string name="easter_сatholic">Католическая Пасха:</string>
+    
+    <string name="spring">Весеннее \nравноденствие:</string>
+    <string name="summer">Летнее \nсолнцестояние:</string>
+    <string name="autumn">Осеннее \nравноденствие:</string>
+    <string name="winter">Зимнее \nсолнцестояние:</string>
+        
+    <string name="equinox">Равноденствие:</string>
+    <string name="easter">Пасха:</string>
+    
+    <string name="AboutTitle">About</string>
+    <string name="About">MoonPhase        
+        \nВерсия: 1.0
+        \nАвтор: Andrew Comeloff
+        \n
+        \nСпасибо, за то что пользуетесь моей программой.
+        Если есть вопросы по ней или пожелания, то пишите на почту.
+		\n
+		\nПочта: comeloff@gmail.com</string>
+    
+    <string-array name="strArrayTabs">
+        <item >Фазы</item>
+        <item >Равноденствие</item>
+        <item >Пасха</item>
+    </string-array>
+
+</resources>

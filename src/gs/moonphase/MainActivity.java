@@ -5,12 +5,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.viewpagerindicator.TitlePageIndicator;
 
@@ -27,15 +32,27 @@ public class MainActivity extends FragmentActivity implements DatePickerDialogFr
 TimePickerDialogFragment.NoticeDialogListener{
 
 	final String LOG_TAG = "myLogs";
+	
+	final int MENU_ABOUT_ID = 1;
+	final int MENU_QUIT_ID = 2;
 
 	final int DIALOG_DATE = 1;
 	final int DIALOG_TIME = 2; 
+	
+	SharedPreferences sPref;
+	final String SAVED_TEXT = "saved_text";
+	final String CAUNT_YEAR = "caunt_year";
+	final String CAUNT_MONTH = "caunt_month";
+	final String CAUNT_DAY = "caunt_day";
+	final String CAUNT_HOUR = "caunt_hour";
+	final String CAUNT_MINUTE = "caunt_minute";	
+	
 	int year, month, day, h, m, s;
 
 	double hour, jDate, iEtDay, iEtHour, iEtMinute, iEtSecond;
-	String date;
+//	String date;
 
-	Date d;
+//	Date d;
 
 	EditText etDate, etTime;
 	Button btn;
@@ -81,58 +98,20 @@ TimePickerDialogFragment.NoticeDialogListener{
 		anim = (AnimationDrawable)iMoon.getBackground(); 
 		anim.start();
 
+		if (year == 0){
+			
+			// get the current date
+			final Calendar c = Calendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			month = c.get(Calendar.MONTH);
+			day = c.get(Calendar.DAY_OF_MONTH);
+			h = c.get(Calendar.HOUR_OF_DAY);
+			m = c.get(Calendar.MINUTE);			
+		} 
 		
-		// get the current date
-				final Calendar c = Calendar.getInstance();
-				year = c.get(Calendar.YEAR);
-				month = c.get(Calendar.MONTH);
-				day = c.get(Calendar.DAY_OF_MONTH);
-				h = c.get(Calendar.HOUR_OF_DAY);
-				m = c.get(Calendar.MINUTE);
-				
+		// display the current date
+		updateDisplay();
 
-				// display the current date
-				updateDisplay();
-
-//		d = new Date();
-//		String format = "yyyy-MM-dd";
-//		SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
-//		etDate.setText(sdf.format(d));
-//		
-//		d = new Date();
-//		format = "HH:mm";
-//		sdf = new SimpleDateFormat(format, Locale.getDefault());
-//		etTime.setText(sdf.format(d));
-//
-//		sdf = new SimpleDateFormat("y");
-//		date = sdf.format(d);
-//		year = Integer.parseInt(date);
-//		Log.d(LOG_TAG, "Year = " + year);
-//
-//		sdf = new SimpleDateFormat("M");
-//		date = sdf.format(d);
-//		month = Integer.parseInt(date);
-//		Log.d(LOG_TAG, "Month = " + month);
-//
-//		sdf = new SimpleDateFormat("d");
-//		date = sdf.format(d);
-//		day = Integer.parseInt(date);
-//		Log.d(LOG_TAG, "Day = " + day);
-//
-//		sdf = new SimpleDateFormat("H");
-//		date = sdf.format(d);
-//		h = Integer.parseInt(date);
-//		Log.d(LOG_TAG, "Hour = " + h);
-//
-//		sdf = new SimpleDateFormat("m");
-//		date = sdf.format(d);
-//		m = Integer.parseInt(date);
-//		Log.d(LOG_TAG, "Minutes = " + m);
-//
-//		sdf = new SimpleDateFormat("s");
-//		date = sdf.format(d);
-//		s = Integer.parseInt(date);
-//		Log.d(LOG_TAG, "Second = " + s);  
 				
 		animScale = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
 		iMoon.startAnimation(animScale);
@@ -141,9 +120,26 @@ TimePickerDialogFragment.NoticeDialogListener{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		// TODO Auto-generated method stub
+		menu.add(0, MENU_ABOUT_ID, 0, "About");
+		menu.add(0, MENU_QUIT_ID, 0, "Exit");		
+		return super.onCreateOptionsMenu(menu);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case MENU_ABOUT_ID:
+			AboutDialogFragment dlg = new AboutDialogFragment();			
+			dlg.show(getSupportFragmentManager(),
+					"AboutPickerDialogFragment");
+			break;
+		case MENU_QUIT_ID:
+			// exit
+			finish();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	public void clickDate(View v) {
@@ -152,7 +148,6 @@ TimePickerDialogFragment.NoticeDialogListener{
 		dlg.setDate(year, month, day);
 		dlg.show(getSupportFragmentManager(),
 				"DatePickerDialogFragment");
-//		showDialog(DIALOG_DATE);
 	}
 	
 	public void clickTime(View v) {
@@ -160,8 +155,7 @@ TimePickerDialogFragment.NoticeDialogListener{
 		dlg.setNoticeDialogListener(MainActivity.this);
 		dlg.setDate(h, m);
 		dlg.show(getSupportFragmentManager(),
-				"DatePickerDialogFragment");
-//		showDialog(DIALOG_TIME);
+				"TimePickerDialogFragment");
 	}
 	
 	public void clickRes(View v) {
@@ -183,6 +177,7 @@ TimePickerDialogFragment.NoticeDialogListener{
         TitlePageIndicator indicator = (TitlePageIndicator)findViewById( R.id.indicator );
         pager.setAdapter( adapter );
         indicator.setViewPager( pager );
+        Log.d(LOG_TAG, "ID_viewpager = " + pager.getId());
         
         pager.setVisibility(1);
 		
@@ -260,43 +255,30 @@ TimePickerDialogFragment.NoticeDialogListener{
 			return "0" + String.valueOf(c);
 	}
 
-
-
-//	protected Dialog onCreateDialog(int id) {
-//		switch (id) {
-//		case DIALOG_DATE:
-//			DatePickerDialog dpd = new DatePickerDialog(this, callBackDate, year,
-//					month-1, day);
-//			
-//			return dpd;
-//		case DIALOG_TIME:
-//			TimePickerDialog tpd = new TimePickerDialog(this, callBackTime, h, m, true);
-//			return tpd;			
-//		}
-//
-//		return super.onCreateDialog(id);
-//	}
-//
-//	OnDateSetListener callBackDate = new OnDateSetListener() {
-//
-//		public void onDateSet(DatePicker view, int thisYear, int monthOfYear,
-//				int dayOfMonth) {
-//			
-//			year = thisYear;
-//			month = monthOfYear + 1 ;
-//			day = dayOfMonth;
-//			etDate.setText(year + "-" + month + "-" + day);
-//		}
-//	};
-//	
-//	OnTimeSetListener callBackTime = new OnTimeSetListener() {
-//		
-//		@Override
-//		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//			h = hourOfDay;
-//			m = minute;
-//			etTime.setText(hourOfDay + ":" + minute);
-//			
-//		}
-//	};
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+	  super.onSaveInstanceState(savedInstanceState);
+	  // Save UI state changes to the savedInstanceState.
+	  // This bundle will be passed to onCreate if the process is
+	  // killed and restarted.
+	  savedInstanceState.putInt(CAUNT_YEAR, year);
+	  savedInstanceState.putInt(CAUNT_MONTH, month);
+	  savedInstanceState.putInt(CAUNT_DAY, day);
+	  savedInstanceState.putInt(CAUNT_HOUR, h);
+	  savedInstanceState.putInt(CAUNT_MINUTE, m);
+	  // etc.
+	}
+	
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	  super.onRestoreInstanceState(savedInstanceState);
+	  // Restore UI state from the savedInstanceState.
+	  // This bundle has also been passed to onCreate.
+	  year = savedInstanceState.getInt(CAUNT_YEAR);
+	  month = savedInstanceState.getInt(CAUNT_MONTH);
+	  day = savedInstanceState.getInt(CAUNT_DAY);
+	  h = savedInstanceState.getInt(CAUNT_HOUR);
+	  m = savedInstanceState.getInt(CAUNT_MINUTE);
+	}
 }

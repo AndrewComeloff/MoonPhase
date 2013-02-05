@@ -14,6 +14,19 @@ public class MyPageAdapter extends PagerAdapter implements TitleProvider{
 	
 	List<View> views = null;
  
+//	static String phase, equinox, easter;
+//	public void some_method(Context context) {
+//		   context.getResources();
+//		   phase = context.getString(R.string.phase_moon);
+//		   equinox = context.getString(R.string.equinox);
+//		   easter = context.getString(R.string.easter);
+//		}
+//	Activity context;	
+//	Resources res = context.getResources();
+	
+//	Resources.getSystem().getStringArray(R.array.strArrayTabs);
+//	String[] strArrayTabs = res.getStringArray(R.array.strArrayTabs);
+	
 	private static String[] titles = new String[]
 		    {
 				"Фазы",

@@ -347,7 +347,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int indicator=0x7f08000a;
         public static final int linearLayout1=0x7f08000c;
         public static final int llupBG=0x7f080005;
-        public static final int menu_settings=0x7f08003b;
         public static final int none=0x7f080002;
         public static final int pager=0x7f08000d;
         public static final int selected=0x7f08003a;
@@ -409,30 +408,27 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int two=0x7f030004;
         public static final int vpi__tab=0x7f030005;
     }
-    public static final class menu {
-        public static final int main=0x7f0d0000;
-    }
     public static final class string {
-        public static final int age=0x7f050004;
+        public static final int About=0x7f050013;
+        public static final int AboutTitle=0x7f050012;
+        public static final int age=0x7f050003;
         public static final int app_name=0x7f050000;
-        public static final int autumn=0x7f05000f;
-        public static final int button=0x7f05000a;
-        public static final int easter=0x7f050013;
-        public static final int easter_orthodox=0x7f05000b;
-        public static final int easter_сatholic=0x7f05000c;
-        public static final int equinox=0x7f050012;
-        public static final int first_quarter=0x7f050006;
-        public static final int full_moon=0x7f050007;
-        public static final int julian_date=0x7f050002;
-        public static final int menu_settings=0x7f050001;
-        public static final int moon_phase=0x7f050011;
-        public static final int new_moon=0x7f050005;
-        public static final int new_moon2=0x7f050009;
-        public static final int phase_moon=0x7f050003;
-        public static final int spring=0x7f05000d;
-        public static final int summer=0x7f05000e;
-        public static final int third_quarter=0x7f050008;
-        public static final int winter=0x7f050010;
+        public static final int autumn=0x7f05000e;
+        public static final int button=0x7f050009;
+        public static final int easter=0x7f050011;
+        public static final int easter_orthodox=0x7f05000a;
+        public static final int easter_сatholic=0x7f05000b;
+        public static final int equinox=0x7f050010;
+        public static final int first_quarter=0x7f050005;
+        public static final int full_moon=0x7f050006;
+        public static final int julian_date=0x7f050001;
+        public static final int new_moon=0x7f050004;
+        public static final int new_moon2=0x7f050008;
+        public static final int phase_moon=0x7f050002;
+        public static final int spring=0x7f05000c;
+        public static final int summer=0x7f05000d;
+        public static final int third_quarter=0x7f050007;
+        public static final int winter=0x7f05000f;
     }
     public static final class style {
         /** 
