@@ -2,11 +2,8 @@ package gs.moonphase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -38,24 +35,24 @@ TimePickerDialogFragment.NoticeDialogListener{
 
 	final int DIALOG_DATE = 1;
 	final int DIALOG_TIME = 2; 
-	
-	SharedPreferences sPref;
-	final String SAVED_TEXT = "saved_text";
+
 	final String CAUNT_YEAR = "caunt_year";
 	final String CAUNT_MONTH = "caunt_month";
 	final String CAUNT_DAY = "caunt_day";
 	final String CAUNT_HOUR = "caunt_hour";
-	final String CAUNT_MINUTE = "caunt_minute";	
+	final String CAUNT_MINUTE = "caunt_minute";
+	final String CAUNT_POSITION = "caunt_position";
+	final String VISIBILITY_VIEWPAGER = "visibility_viewpager";
 	
 	int year, month, day, h, m, s;
 
 	double hour, jDate, iEtDay, iEtHour, iEtMinute, iEtSecond;
-//	String date;
 
-//	Date d;
+	int position;
 
 	EditText etDate, etTime;
 	Button btn;
+	boolean isVisibleViewpager;
 	
 	private TextView tvJdateRes;
 	private TextView tvPhaseRes;
@@ -73,7 +70,7 @@ TimePickerDialogFragment.NoticeDialogListener{
 	private TextView tvAutumn;
 	private TextView tvWinter;
 	
-	TableLayout tlInfoPhase, tlInfoSeason;
+	TableLayout tlInfoPhase, tlInfoSeason;	
 	
 	public static ImageView iMoon;
 	
@@ -81,6 +78,8 @@ TimePickerDialogFragment.NoticeDialogListener{
 	Animation animScale; 
 	
 	List<View> views;
+	
+	String test;///////////////
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,11 +110,19 @@ TimePickerDialogFragment.NoticeDialogListener{
 		
 		// display the current date
 		updateDisplay();
-
 				
 		animScale = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
 		iMoon.startAnimation(animScale);
-				
+		
+		if (isVisibleViewpager){
+			calulate();
+		}
+		Log.d(LOG_TAG, "savedInstanceState" + savedInstanceState 
+				+ "\nyear = " + year + "\nisVisibleViewpager" 
+				+ isVisibleViewpager + "\ntest = " + test);
+
+		
+		test = "testing"; ////////////////////
 	}
 
 	@Override
@@ -159,7 +166,10 @@ TimePickerDialogFragment.NoticeDialogListener{
 	}
 	
 	public void clickRes(View v) {
-		
+		calulate();
+	}
+
+	private void calulate(){
 		LayoutInflater inflater = LayoutInflater.from(this);
         views = new ArrayList<View>();
         
@@ -175,11 +185,32 @@ TimePickerDialogFragment.NoticeDialogListener{
         MyPageAdapter adapter = new MyPageAdapter(views);
         ViewPager pager = (ViewPager)findViewById( R.id.viewpager );
         TitlePageIndicator indicator = (TitlePageIndicator)findViewById( R.id.indicator );
-        pager.setAdapter( adapter );
+        pager.setAdapter( adapter );        
         indicator.setViewPager( pager );
-        Log.d(LOG_TAG, "ID_viewpager = " + pager.getId());
+        
+        indicator.onPageSelected(position);  
+        pager.setCurrentItem(position);
+        
+      //We set this on the indicator, NOT the pager
+        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+            	MainActivity.this.position = position;
+//                Toast.makeText(MainActivity.this, "Changed to page " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        
         
         pager.setVisibility(1);
+        isVisibleViewpager = true;
 		
 		tvJdateRes = (TextView) page1.findViewById(R.id.tvJDateRes);
 		tvPhaseRes = (TextView) page1.findViewById(R.id.tvPhaseRes);
@@ -221,9 +252,9 @@ TimePickerDialogFragment.NoticeDialogListener{
 		llbg.setVisibility(1);
 		anim.stop();
 		iMoon.setBackgroundResource(R.drawable.moon01);
-		Anim.anim(calc.getAgeJul());
+		Anim.anim(calc.getAgeJul());	
 	}
-
+	
 	@Override
 	public void onDate(int year, int month, int day) {
 		this.year = year;
@@ -267,6 +298,9 @@ TimePickerDialogFragment.NoticeDialogListener{
 	  savedInstanceState.putInt(CAUNT_DAY, day);
 	  savedInstanceState.putInt(CAUNT_HOUR, h);
 	  savedInstanceState.putInt(CAUNT_MINUTE, m);
+	  savedInstanceState.putInt(CAUNT_POSITION, position);
+	  savedInstanceState.putBoolean(VISIBILITY_VIEWPAGER, isVisibleViewpager);
+	  savedInstanceState.putString("test", test);
 	  // etc.
 	}
 	
@@ -280,5 +314,8 @@ TimePickerDialogFragment.NoticeDialogListener{
 	  day = savedInstanceState.getInt(CAUNT_DAY);
 	  h = savedInstanceState.getInt(CAUNT_HOUR);
 	  m = savedInstanceState.getInt(CAUNT_MINUTE);
+	  position = savedInstanceState.getInt(CAUNT_POSITION);
+	  isVisibleViewpager = savedInstanceState.getBoolean(VISIBILITY_VIEWPAGER);
+	  test = savedInstanceState.getString("test");
 	}
 }
