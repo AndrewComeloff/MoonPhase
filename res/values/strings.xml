@@ -33,7 +33,7 @@
 		\nContact: comeloff@gmail.com</string>
     
     <string-array name="strArrayTabs">
-        <item >Фазы</item>
+        <item >Phases</item>
         <item >Equinox</item>
         <item >Easter</item>
     </string-array>

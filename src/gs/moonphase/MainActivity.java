@@ -182,7 +182,7 @@ TimePickerDialogFragment.NoticeDialogListener{
         View page3 = inflater.inflate(R.layout.three, null);
         views.add(page3);
         
-        MyPageAdapter adapter = new MyPageAdapter(views);
+        MyPageAdapter adapter = new MyPageAdapter(this, views);
         ViewPager pager = (ViewPager)findViewById( R.id.viewpager );
         TitlePageIndicator indicator = (TitlePageIndicator)findViewById( R.id.indicator );
         pager.setAdapter( adapter );        

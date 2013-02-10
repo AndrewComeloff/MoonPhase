@@ -2,12 +2,14 @@ package gs.moonphase;
 
 import java.util.List;
 
-import com.viewpagerindicator.TitleProvider;
-
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import com.viewpagerindicator.TitleProvider;
 
 
 public class MyPageAdapter extends PagerAdapter implements TitleProvider{
@@ -34,8 +36,10 @@ public class MyPageAdapter extends PagerAdapter implements TitleProvider{
 				"Пасха"
 		    };
 		 
-		    public MyPageAdapter(List<View> inViews )
+		    public MyPageAdapter(Context ctx, List<View> inViews )
 		    {
+		    	Resources res = ctx.getResources();
+		    	titles = res.getStringArray(R.array.strArrayTabs);
 		    	views = inViews;
 		    }
 		 
